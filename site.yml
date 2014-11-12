@@ -1,0 +1,26 @@
+title: Jade's Home 
+subtitle: Be quick,don't be hurry! 
+link: 博客URL
+meta:
+  description: 页面meta中的description
+  keywords: !!seq
+    - Jadeball
+    - Home Page
+    - 金融 互联网 软件开发
+  author: 页面meta中的Jadeball
+master:
+  name: jade
+  about: 会扯蛋才会牛屄
+  email: 邮箱
+rss:
+  title: RSS源标题
+  desc: RSS源描述
+  lang: zh-cn
+  max: 10
+copyright:
+  owner: 版权所有方
+  beginYear: 2013
+  endYear: 2013
+  ICP: 沪ICP备08321413号 
+theme: default
+codetheme: night
