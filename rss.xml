@@ -4,7 +4,7 @@
         <title>RSS源标题</title>
         <link>博客URL</link>
         <description>RSS源描述</description>
-        <lastBuildDate>Thu, 13 Nov 2014 20:41:17 +0800</lastBuildDate>
+        <lastBuildDate>Thu, 13 Nov 2014 20:54:12 +0800</lastBuildDate>
         <language>zh-cn</language>
         
         <item> 
@@ -13,7 +13,7 @@
             <guid>博客URL/articles/20141113-post.html</guid> 
             <author>邮箱 jade</author> 
             <pubDate>Thu, 13 Nov 2014 00:00:00 +0800</pubDate> 
-            <description>如何使用github免费的服务搭建博客，以艾滋、同志患者交友社区博客aizi.me为例。</description> 
+            <description>如何使用github免费的服务搭建博客，以艾滋、同志患者交友社区博客&lt;a href=&quot;http://www.aizi.me&quot; target=&quot;_blank&quot;&gt;aizi.me&lt;/a&gt;为例。</description> 
         </item> 
         
         <item> 
