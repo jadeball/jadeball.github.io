@@ -1,3 +1,13 @@
+- id: 20141113-post
+  title: 个人博客免费搭建 github
+  postedOn: !!str 2014-11-13
+  author: 王玉球
+  tags:
+    - 博客
+    - github
+    - aizi.me
+  abstract: 如何使用github免费的服务搭建博客，以艾滋、同志患者交友社区博客aizi.me为例。
+
 - id: three-post
   title: 前端性能优化之一 系统架构篇
   postedOn: !!str 2013-11-23
