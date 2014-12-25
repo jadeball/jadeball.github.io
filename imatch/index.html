@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="网站监控,站点监控,网站可用率监控,网站性能监控,网站监控工具,网站监控系统,HTTP监控,PING监控,服务器性能监控,服务器监控,服务监控,DNS监控,CPU监控,页面性能监控,应用性能监控,API监控,IT监控">
+    <meta name="description" content="监控宝是IT运维网站监控的必备工具。实时监控网站，服务器，服务，网络，数据库，API，移动APP，应用程序，页面性能等。秒级告警，准确定位故障，保障IT系统稳定可靠">
+
+    <title>募齐-中国最好的高端猎头招聘</title>
+    <link rel="shortcut icon" href="./rs/img/favicon.ico">
+
+    <link rel="stylesheet" href="./rs/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./rs/css/animate.min.css">
+    <link rel="stylesheet" href="./rs/css/jkb.css">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="./rs/js/yunzhihui/html5shiv.min.js"></script>
+    <script type="text/javascript" src="./rs/js/yunzhihui/respond.min.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    
+    <script type="text/javascript">
+        window.onload=function(){
+            document.getElementsByTagName('body')[0].innerHTML="您的浏览器版本太低了，赶紧升级吧，亲！！！！";
+        }
+    </script>
+    
+    <![endif]-->
+    <script type="text/javascript" async="" src="./rs/js/ga.js"></script><script type="text/javascript" src="./rs/js/jquery.min.js"></script>
+</head>
+<body>
+<!-- 顶部导航条 -->
+<div id="main-navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#site-navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="./rs/img/监控宝-中国最好的网站监控神器 云智慧旗下网站.html"><img src="./rs/img/logo.png" alt="云智慧"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="site-navbar">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="./rs/img/监控宝-中国最好的网站监控神器 云智慧旗下网站.html">首页</a></li>
+            <li><a href="http://www.jiankongbao.com/ent_contact">关于我们</a></li>
+            <li class="screen_hide"><a href="http://www.jiankongbao.com/support">联系我们</a></li>
+            <li><a href="http://www.jiankongbao.com/event">加入我们</a></li>
+        </ul>
+        <!--<ul class="nav navbar-nav navbar-right">-->
+            <!---->
+            <!--<li class="dropdown" id="dropdown-signin">-->
+                <!--<a href="http://www.jiankongbao.com/#" class="navbar-login ">登录</a>-->
+                <!--<div class="dropdown-menu signin" id="signin">-->
+					<!--<i class="close-signin"></i>-->
+                    <!--<div class="form-signin">-->
+                        <!--<input type="text" class="form-control" placeholder="邮箱" name="email" id="email">-->
+                        <!--<input type="password" class="form-control" placeholder="密码" name="pwd" id="pwd">-->
+                        <!--<label class="checkbox">-->
+                            <!--<input type="checkbox" id="remeber_me" name="remeber_me" value="1" checked="checked">记住我-->
+                        <!--</label>-->
+                        <!--<div class="forget_password">-->
+                            <!--<a href="http://www.jiankongbao.com/pwd_find.php" class="">忘记密码？</a>-->
+                        <!--</div>-->
+                        <!--<div style="margin-right: 10px; display: block; color: red; text-align: center;min-height:30px;font-size: 13px;" id="msg_container" class="error_msg"></div>-->
+                        <!--<input type="hidden" name="referer" id="referer" value="">-->
+                        <!--<button class="btn btn-lg btn-blue btn-block" id="sigin_btn">登录</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+
+            <!--&lt;!&ndash;<li><a href="javascript:;" data-target="#myModal"  data-toggle="modal" class="navbar-login">登录</a></li>&ndash;&gt;-->
+            <!--<li><a href="http://www.jiankongbao.com/signup?ref=header" class="navbar-register">注册</a></li>-->
+            <!---->
+        <!--</ul>-->
+    </div>
+</div>
+<!-- 顶部导航条 -->
+
+<script>
+$(function(){
+	$('#dropdown-signin').on('keydown',function(e){
+		if(e.keyCode == 13){
+				$('#sigin_btn').click();
+			}
+	});
+	$('#dropdown-signin').on('click','.navbar-login,.close-signin',function(){
+		$('#dropdown-signin').toggleClass('open');
+    });
+
+    
+    $('#sigin_btn').click(function () {
+        var email = $("#email").val();
+        var pwd = $("#pwd").val();
+        if(!email){
+            $('#msg_container').html('请填写邮箱');return false;
+        }
+        if(!pwd){
+            $('#msg_container').html('请填写密码');return false;
+        }
+        var flag= $("#remeber_me").prop('checked');
+        if(flag){
+            var remeber_me = $("#remeber_me").val();
+        } else{
+            var remeber_me =0;
+        }
+        var referer = $("#referer").val();
+        var url = "/jkb/account_dispose/signin/s";
+        var data = {'email':email,'pwd':pwd, 'remeber_me':remeber_me,'referer':referer};
+
+        $.post(url, data,
+                function (res) {
+                    switch (res.code) {
+                        case 'E00001':
+                            $('#msg_container').html(res.msg);
+                            break;
+                        case 'E00000':
+                            parent.location=res.msg;
+                            break;
+                        default:
+                            return false;
+                    }
+                },
+                "json"
+        );
+        return false;
+    });
+});
+    function getActivationEmail()
+    {
+        var email = $("#email").val();
+        var pwd = $("#pwd").val();
+        if(!email){
+            email = $("#emails").val();
+            pwd = $("#passwords").val();
+            var flag =1;
+        }
+        $.ajax({
+            type:"post",
+            url:"/dispose.php",
+            data:{"__action":"get_activation_email","emails":email,"pwds":pwd},
+            dataType:"json",
+            success:function(data){
+                if(flag){
+                    if(data.code=='E00000'){
+                        $('#succ_tip').html(data.msg).show();
+                        $('#err_tip').hide();
+                    } else{
+                        $('#err_tip').html(data.msg).show();
+                        $('#succ_tip').hide();
+                    }
+
+                } else{
+                    $('#msg_container').html(data.msg);
+                }
+
+            }
+
+        });
+    }
+</script>
+
+<div class="main">
+<!-- 活动banner -->
+<section class="activity">
+    <div class="page_container">
+
+
+        <img class="act_bg" src="./rs/img/back.png" width="100%" height="100%" alt="监控宝活动征文">
+
+
+
+
+
+        <!--<a href="http://www.jiankongbao.com/yunzhihui/active_essay" title="监控宝征文活动"><img src="./rs/img/index_essay_2.png" class="activity-posi" style="position: absolute; top:58%; right:13%; "></a>-->
+        <!--<a href="/yunzhihui/active_invite">-->
+            <!--<img src="img/invite/invite_btn.png" alt="猛戳此处">-->
+        <!--</a>-->
+    </div>
+</section>
+<!-- 监控宝产品形象 -->
+<section class="bg-blue header">
+    <div class="page_container">
+        <h1 class="animated bounceInRight">人才是企业成功的关键</h1>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="page_text">
+                    <ul>
+                        <li>主动发现，准确定位</li>
+                        <li>寻找最合适的人才</li>
+                        <li>为企业发展提供人才保障</li>
+                        <li>竭诚为客户服务</li>
+                        <li>IT、TMT、金融</li>
+                        <li>人力资源咨询服务</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-7"><img class="img-responsive center-block animated zoomIn margin-top-30" src="./rs/img/integration.png" alt=""></div>
+        </div>
+    </div>
+</section>
+<!--&lt;!&ndash; 监控宝APP &ndash;&gt;-->
+<!--<section id="app_page">-->
+    <!--<div class="page_container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-6"><img class="img-responsive center-block animated rollIn" src="./rs/img/mobile.png" alt="">-->
+            <!--</div>-->
+            <!--<div class="col-md-6">-->
+                <!--<div class="page_text">-->
+                    <!--<h1 class="animated bounceInLeft">监控宝APP&nbsp;&nbsp;史上最强的监控神器</h1>-->
+                    <!--<ul>-->
+                        <!--<li>实时Push告警通知，私人监控助手为你保驾护航</li>-->
+                        <!--<li>实时性能状态、历史快照、统计图表一应俱全</li>-->
+                        <!--<li>任何地点，即时查看处理，世界再大也不怕</li>-->
+                        <!--<li>实用组件一键帮你搞定，自在监控不用愁</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="row">-->
+                    <!--<div class="col-md-4 col-md-offset-4">-->
+                        <!--<img class="img-responsive" src="./rs/img/app_qrcode.png" alt="">-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</section>-->
+<!-- API监控 -->
+<!--<section class="bg-gray api">-->
+    <!--<div class="page_container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-6">-->
+                <!--<div class="page_text">-->
+                    <!--<h1 class="animated bounceInRight">API监控<br>业内唯一的应用程序接口监控</h1>-->
+                    <!--<ul>-->
+                        <!--<li>实时洞察API接口的可用性、响应时间和正确性</li>-->
+                        <!--<li>实时反馈各地区用户体验，全面准确分析数据</li>-->
+                        <!--<li>支持get、post、put、delete、head、options</li>-->
+                        <!--<li>支持JSON、XML、Text、Response Status验证</li>-->
+                        <!--<li>支持postman脚本导入</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<a href="http://www.jiankongbao.com/api/free_trial" class="btn btn-orange" style="padding: 10px 90px;font-size: 18px;">申请试用</a>-->
+            <!--</div>-->
+            <!--<div class="col-md-6"><img class="img-responsive center-block margin-top-50 animated bounceInLeft" src="./rs/img/api-flowchart1.png" alt=""></div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</section>-->
+<!-- 网站监控 -->
+<section>
+    <div class="page_container">
+        <div class="row">
+            <div class="col-md-6"><img class="img-responsive center-block animated bounceInRight" src="./rs/img/site.png" alt=""></div>
+            <div class="col-md-6">
+                <div class="page_text">
+                    <h1 class="animated fadeInLeft">专业化<br>人力资源猎头服务</h1>
+                    <ul>
+                        <li>专业</li>
+                        <li>高端</li>
+                        <li>高效</li>
+                        <li>稳定</li>
+                    </ul>
+                </div>
+                <div class="row img_gallery">
+                    <div class="col-md-4 col-md-offset-2">
+                        <a href="http://www.jiankongbao.com/#" data-toggle="modal" data-target="#site_gallery_modal">
+                            <img class="img-responsive" src="./rs/img/site1.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="http://www.jiankongbao.com/#" data-toggle="modal" data-target="#site_gallery_modal">
+                            <img class="img-responsive" src="./rs/img/site2.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 服务器监控，服务监控 -->
+<!--<section class="bg-gray">-->
+    <!--<div class="page_container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-6">-->
+                <!--<div class="page_text">-->
+                    <!--<h1 class="animated rollIn">服务器/服务监控&nbsp;&nbsp;实时捕捉深层性能指标</h1>-->
+                    <!--<ul>-->
+                        <!--<li>支持Linux/Unix/Windows系统及云平台</li>-->
+                        <!--<li>支持全部物理指标及30多种应用服务</li>-->
+                        <!--<li>云主机监控端一键开启，无需复杂配置</li>-->
+                        <!--<li>无需修改服务和代码，无需人工干预</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="row img_gallery">-->
+                    <!--<div class="col-md-4 col-md-offset-2">-->
+                        <!--<a href="http://www.jiankongbao.com/#" data-toggle="modal" data-target="#server_gallery_modal">-->
+                            <!--<img class="img-responsive" src="./rs/img/server1.jpg" alt="">-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="col-md-4">-->
+                        <!--<a href="http://www.jiankongbao.com/#" data-toggle="modal" data-target="#server_gallery_modal">-->
+                            <!--<img class="img-responsive" src="./rs/img/server2.jpg" alt="">-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-6"><img class="img-responsive center-block margin-top-50 animated flipInX" src="./rs/img/server.png" alt=""></div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</section>-->
+<!-- 页面性能监控 -->
+<section>
+    <div class="page_container">
+        <div class="row">
+            <div class="col-md-6"><img class="img-responsive center-block animated fadeInRight" src="./rs/img/alarm.png" alt=""></div>
+            <div class="col-md-6">
+                <div class="page_text">
+                    <h1 class="animated fadeInLeft">快速发展的&nbsp;&nbsp;高端猎头服务</h1>
+                    <ul>
+                        <li>你的努力已经铺就通向成功的平台</li>
+                        <li>我们的任务是吸引人才</li>
+                        <li>立足上海，面向全球</li>
+                        <li>仍在高速发展中。。。。</li>
+                    </ul>
+                </div>
+                <div class="row img_gallery">
+                    <div class="col-md-4 col-md-offset-2">
+                        <a href="http://www.jiankongbao.com/#" data-toggle="modal" data-target="#page_gallery_modal">
+                            <img class="img-responsive" src="./rs/img/page3.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="http://www.jiankongbao.com/#" data-toggle="modal" data-target="#page_gallery_modal">
+                            <img class="img-responsive" src="./rs/img/page2.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 套餐价格 -->
+<section class="price_block bg-gray">
+    <div class="page_container">
+        <div class="row">
+            <div class="col-md-1">&nbsp;</div>
+            <div class="col-md-2">
+                <div class="version_block special animated flipInY">
+                    <div class="version_title">
+                        <h3>互联网</h3>
+
+                        <!--<div class="price">-->
+                            <!--<h3>¥999<br>-->
+                                <!--<small>元/月 起</small>-->
+                            <!--</h3>-->
+                            <!--<div class="scope">适用：运营型企业</div>-->
+                        <!--</div>-->
+                    </div>
+                    <div style="line-height: 38px;">我们专注于电子商务，网游，新媒体，第三方支付，移动互联网，视频，SNS，生活服务及搜索等业务的职位招聘。团队按照职能及管理区域细致分工，资源覆盖全国各地及部分海外区域。</div>
+                    <!--<ul>-->
+                        <!--<li></li>-->
+                        <!--&lt;!&ndash;<li>多用户分级告警</li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li>全功能API套件</li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li>MySQL深度监控</li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li>数据永久保存</li>&ndash;&gt;-->
+                    <!--</ul>-->
+
+                    <!--<div class="version_oper">-->
+                        <!--<a href="http://www.jiankongbao.com/ent_contact" class="btn btn-blue">企业服务方案</a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="version_block animated flipInY">
+                    <div class="version_title">
+                        <h3>高科技</h3>
+
+                        <!--<div class="price">-->
+                            <!--<h3>¥599<br>-->
+                                <!--<small>元/月</small>-->
+                            <!--</h3>-->
+                            <!--<div class="scope">适用：成长型企业</div>-->
+                        <!--</div>-->
+                    </div>
+                    <div style="line-height: 38px;">我们专注于电子商务，网游，新媒体，第三方支付，移动互联网，视频，SNS，生活服务及搜索等业务的职位招聘。团队按照职能及管理区域细致分工，资源覆盖全国各地及部分海外区域。</div>
+
+                    <!--<ul>-->
+                        <!--<li>40 个网站监控项目</li>-->
+                        <!--<li>40个主机监控项目</li>-->
+                        <!--<li>监测点任选12个</li>-->
+                        <!--<li>2个API监控请求</li>-->
+                        <!--<li>监控频率最高2分钟</li>-->
+                    <!--</ul>-->
+                                        <!--<div class="version_oper">-->
+                        <!--<a href="javascript:vodi(0);" class="btn btn-blue" onclick="goumaiTips(); return false">购买</a>-->
+                    <!--</div>-->
+                                    </div>
+            </div>
+            <div class="col-md-2">
+                <div class="version_block special1 animated flipInY">
+                    <div class="version_title">
+                        <h3>金融</h3>
+
+                        <!--<div class="price">-->
+                            <!--<h3>¥129<br>-->
+                                <!--<small>元/月</small>-->
+                            <!--</h3>-->
+                            <!--<div class="scope">适用：初创型企业</div>-->
+                        <!--</div>-->
+                    </div>
+                    <div style="line-height: 38px;">我们专注于电子商务，网游，新媒体，第三方支付，移动互联网，视频，SNS，生活服务及搜索等业务的职位招聘。团队按照职能及管理区域细致分工，资源覆盖全国各地及部分海外区域。</div>
+
+                    <!--<ul>-->
+                        <!--<li>20 个网站监控项目</li>-->
+                        <!--<li>20个主机监控项目</li>-->
+                        <!--<li>监测点任选8个</li>-->
+                        <!--<li>监控频率最高5分钟</li>-->
+                        <!--<li>包月短信100条</li>-->
+                    <!--</ul>-->
+                                        <!--<div class="version_oper">-->
+                        <!--<a href="javascript:vodi(0);" class="btn btn-blue" onclick="goumaiTips(); return false">购买</a>-->
+                    <!--</div>-->
+                                    </div>
+            </div>
+            <div class="col-md-2">
+                <div class="version_block animated flipInY">
+                    <div class="version_title">
+                        <h3>专业服务</h3>
+
+                        <!--<div class="price">-->
+                            <!--<h3>¥365<br>-->
+                                <!--<small>元/年</small>-->
+                            <!--</h3>-->
+                            <!--<div class="scope">适用：个人站长</div>-->
+                        <!--</div>-->
+                    </div>
+                    <div style="line-height: 38px;">我们专注于电子商务，网游，新媒体，第三方支付，移动互联网，视频，SNS，生活服务及搜索等业务的职位招聘。团队按照职能及管理区域细致分工，资源覆盖全国各地及部分海外区域。</div>
+
+                    <!--<ul>-->
+                        <!--<li>10 个网站监控项目</li>-->
+                        <!--<li>10个主机监控项目</li>-->
+                        <!--<li>6 个指定监测点任选</li>-->
+                        <!--<li>监控频率最高5分钟</li>-->
+                        <!--<li>包月短信30条</li>-->
+                    <!--</ul>-->
+
+                                        <!--<div class="version_oper">-->
+                        <!--<a href="javascript:vodi(0);" class="btn btn-blue" onclick="goumaiTips(); return false">购买</a>-->
+                    <!--</div>-->
+                                    </div>
+            </div>
+            <div class="col-md-2">
+                <div class="version_block animated flipInY">
+                    <div class="version_title">
+                        <h3>咨询服务</h3>
+
+                        <!--<div class="price">-->
+                            <!--<h3>¥0<br>-->
+                                <!--<small>元</small>-->
+                            <!--</h3>-->
+                            <!--<div class="scope">适用：非盈利或个人</div>-->
+                        <!--</div>-->
+                    </div>
+                    <div style="line-height: 38px;">我们专注于电子商务，网游，新媒体，第三方支付，移动互联网，视频，SNS，生活服务及搜索等业务的职位招聘。团队按照职能及管理区域细致分工，资源覆盖全国各地及部分海外区域。</div>
+
+                    <!--<ul>-->
+                        <!--<li>5 个网站监控项目</li>-->
+                        <!--<li>4个主机监控项目</li>-->
+                        <!--<li>4 个指定监测点任选3个</li>-->
+                        <!--<li>监控频率最高 15 分钟</li>-->
+                        <!--<li>验证手机送10条短信</li>-->
+                    <!--</ul>-->
+
+                    <!--<div class="version_oper" style="height: 70px"></div>-->
+
+                </div>
+            </div>
+            <div class="col-md-1">&nbsp;</div>
+        </div>
+        <!-- 监控宝联系方式 -->
+        <div class="row">
+            <div class="col-md-1">&nbsp;</div>
+            <div class="col-md-10">
+                <div class="jkb_contact">
+                    <ul>
+                        <li><img src="./rs/img/telephone_icon.png">18621690466</li>
+                        <li><a href="mailto:sales@jiankongbao.com"><img src="./rs/img/mail_icon.png">zhangjingjing@imatch-talent.com</a>
+                        </li>
+                        <li><a href="http://www.jiankongbao.com/#" onclick="javascript:window.open(&#39;http://b.qq.com/webc.htm?new=0&amp;sid=4006620365&amp;eid=218808P8z8p8y8K8y8Q8x&amp;o=www.jiankongbao.com&amp;q=7&#39;, &#39;_blank&#39;, &#39;height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no&#39;);return false;"><img class="qq_icon" title="企业QQ：4006620365" alt="企业QQ：4006620365" src="./rs/img/qq_icon.png">在线咨询</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-1">&nbsp;</div>
+        </div>
+    </div>
+</section>
+<section class="users">
+    <div class="page_container">
+        <h1>代表客户</h1>
+
+        <div class="row">
+            <div class="col-md-4 animated bounceInLeft">
+                <div class="user-say"><p>募齐为我们提供了优质服务，是我们通往成功之路的桥梁。</p></div>
+                <div class="media">
+                    <div class="pull-left">
+                        <img src="./rs/img/xcw-head.png" alt="">
+                    </div>
+                    <div class="media-body">
+                        <h5>周明</h5>
+
+                        <p>宝信软件&nbsp;&nbsp;开发总监</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 animated bounceInDown">
+                <div class="user-say"><p>募齐为我们提供了优质服务，是我们通往成功之路的桥梁。</p></div>
+                <div class="media">
+                    <div class="pull-left">
+                        <img src="./rs/img/yj-head.png" alt="">
+                    </div>
+                    <div class="media-body">
+                        <h5>杨健</h5>
+
+                        <p>酷讯旅游&nbsp;&nbsp;研发副总裁</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 animated bounceInRight">
+                <div class="user-say"><p>募齐为我们提供了优质服务，是我们通往成功之路的桥梁。</p></div>
+                <div class="media">
+                    <div class="pull-left">
+                        <img src="./rs/img/momo-head.png" alt="">
+                    </div>
+                    <div class="media-body">
+                        <h5>陈湛翀</h5>
+
+                        <p>陌陌&nbsp;&nbsp;运维总监</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 animated bounceInLeft">
+                <div class="user-say"><p>募齐为我们提供了优质服务，是我们通往成功之路的桥梁。</p></div>
+                <div class="media">
+                    <div class="pull-left">
+                        <img src="./rs/img/zq-head.png" alt="">
+                    </div>
+                    <div class="media-body">
+                        <h5>张群</h5>
+
+                        <p>高德地图&nbsp;&nbsp;产品总监</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 animated bounceInDown">
+                <div class="user-say">募齐为我们提供了优质服务，是我们通往成功之路的桥梁。</div>
+                <div class="media">
+                    <div class="pull-left">
+                        <img src="./rs/img/xmf-head.png" alt="">
+                    </div>
+                    <div class="media-body">
+                        <h5>徐美凤</h5>
+
+                        <p>同程旅游&nbsp;&nbsp;测试部主管</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 animated bounceInRight">
+                <div class="user-say"><p>募齐为我们提供了优质服务，是我们通往成功之路的桥梁。</p></div>
+                <div class="media">
+                    <div class="pull-left">
+                        <img src="./rs/img/mxf-head.png" alt="">
+                    </div>
+                    <div class="media-body">
+                        <h5>莫显峰</h5>
+
+                        <p>Ucloud&nbsp;&nbsp;CTO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="users-logo animated bounceInUp">
+            <li><img src="./rs/img/xiaomi.png" alt=""></li>
+            <li><img src="./rs/img/shangde.png" alt=""></li>
+            <li><img src="./rs/img/ifeng-logo.png" alt=""></li>
+            <li><img src="./rs/img/wandoujia-logo.png" alt=""></li>
+            <li><img src="./rs/img/jinshan-logo.png" alt=""></li>
+            <li><img src="./rs/img/dianxin-logo.png" alt=""></li>
+            <li><img src="./rs/img/hqys.png" alt=""></li>
+            <li><img src="./rs/img/zhongyin.png" alt=""></li>
+            <li><img src="./rs/img/chunyu.png" alt=""></li>
+            <li><img src="./rs/img/ucloud.png" alt=""></li>
+            <li><img src="./rs/img/5399.png" alt=""></li>
+            <li><img src="./rs/img/kuaidi-logo.png" alt=""></li>
+            <li><img src="./rs/img/baofeng.png" alt=""></li>
+            <li><img src="./rs/img/womai.png" alt=""></li>
+            <li><img src="./rs/img/china-safe.png" alt=""></li>
+            <li><img src="./rs/img/yongyou-logo.png" alt=""></li>
+            <li><img src="./rs/img/sina-financial.png" alt=""></li>
+            <li><img src="./rs/img/bestv-logo.png" alt=""></li>
+        </ul>
+    </div>
+</section>
+<!-- footer -->
+<section class="footer bg-gray">
+    <h1 class="text-center">iMatch talent是一家中国领先的专业高端招聘机构。</h1>
+
+    <div class="exper_btn">
+        <h1 class="text-center">人才是企业成功的关键，我们竭诚为您服务！</h1>
+    </div>
+    <h4 class="text-center"><a href="http://www.toushibao.com/" target="_blank" style="color: #2a6496;">同时我们也急需人才加入&gt;&gt;</a></h4>
+    <footer>
+
+        <div class="contact">
+            电话：18621690466&nbsp;&nbsp;&nbsp;&nbsp;市场合作:zhnangjingjing@imatch-talent.com
+        </div>
+        <div class="footer_copyright">
+            Copyright© 2014-2014 募齐™&nbsp;&nbsp;<a href="http://www.miibeian.gov.cn/" target="_blank" style="color:black;">沪ICP备0902133760号</a>&nbsp;&nbsp;沪公网安备432408007334号<br><br>
+        </div>
+
+
+
+    <ul>
+
+
+
+
+        <li>
+            <dl>
+                <dt>微信关注</dt>
+                <dd><img src="./rs/img/wx_code.png" style="width:78px;" alt=""></dd>
+            </dl>
+        </li>
+        <li>
+            <div class="media">
+                <div class="pull-left"><img class="media-object" src="./rs/img/tencent_wb.png" alt=""></div>
+                <div class="media-body"><a href="http://e.t.qq.com/jiankongbao" target="_blank">关注腾讯微博</a></div>
+            </div>
+            <div class="media">
+                <div class="pull-left"><img class="media-object" src="./rs/img/sina_wb.png" alt=""></div>
+                <div class="media-body"><a href="http://weibo.com/jiankongbao?sudaref=www.jiankongbao.com" target="_blank">关注新浪微博</a></div>
+            </div>
+        </li>
+    </ul>
+
+</footer>
+
+<script type="text/javascript" src="./rs/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./rs/js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="./rs/js/onpage.js"></script>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-26312629-1']);
+    _gaq.push(['_setDomainName', 'jiankongbao.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+
+</section>
+</div>
+<!-- 网站实例图片弹窗 -->
+<div id="site_gallery_modal" class="modal fade img_gallery_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <div id="carousel-site" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active"><img src="./rs/img/site1.jpg" alt=""></div>
+                        <div class="item"><img src="./rs/img/site2.jpg" alt=""></div>
+                        <div class="item"><img src="./rs/img/site3.jpg" alt=""></div>
+                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="http://www.jiankongbao.com/#carousel-site" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="http://www.jiankongbao.com/#carousel-site" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- 服务器实例图片弹窗 -->
+<div id="server_gallery_modal" class="modal fade img_gallery_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <div id="carousel-server" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active"><img src="./rs/img/server1.jpg" alt=""></div>
+                        <div class="item"><img src="./rs/img/server2.jpg" alt=""></div>
+                        <div class="item"><img src="./rs/img/server3.jpg" alt=""></div>
+                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="http://www.jiankongbao.com/#carousel-server" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="http://www.jiankongbao.com/#carousel-server" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- 全景实例图片弹窗 -->
+<div id="page_gallery_modal" class="modal fade img_gallery_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <div id="carousel-page" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active"><img src="./rs/img/page3.jpg" alt=""></div>
+                        <div class="item"><img src="./rs/img/page2.jpg" alt=""></div>
+                        <div class="item"><img src="./rs/img/page1.jpg" alt=""></div>
+                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="http://www.jiankongbao.com/#carousel-page" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="http://www.jiankongbao.com/#carousel-page" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="./rs/js/index.js"></script>
+<script src="./rs/js/main.js"></script>
+
+
+</body></html>
