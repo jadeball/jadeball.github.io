@@ -163,9 +163,32 @@ $(function(){
 <!-- 活动banner -->
 <section class="activity">
     <div class="page_container">
+    <div class="act_bg" style="background:#033; height:auto;">
+    <!--大图轮播-->
+        <div class="banner_wrap oh">
+        <!--广告图-->
+            <ul class="fade_ul">
+                <li class="fade_img" style="opacity: 1; z-index: 2;"><div style="background:url(rs/img/banner1.jpg) no-repeat center top; height:450px;"></div><span><a href="http://www.baidu.com/" target="_blank"></a></span></li>
+                <li class="fade_img"><div style="background:url(rs/img/banner2.jpg) no-repeat center top; height:450px;"></div><span><a href="https://www.alipay.com/" target="_blank"></a></span></li>
+                <li class="fade_img"><div style="background:url(rs/img/banner3.jpg) no-repeat center top; height:450px;"></div><span><a href="http://www.68design.net/" target="_blank"></a></span></li>
+                <li class="fade_img"><div style="background:url(rs/img/banner4.jpg) no-repeat center top; height:450px;"></div><span><a href="http://www.qiushibaike.com/" target="_blank"></a></span></li>
+            </ul>
+            <!--数字切换-->	
+            <div class="slide_no_box">
+                <ul class="slider_num">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </div>
+        </div>
+    
+    
+    </div>
 
 
-        <img class="act_bg" src="./rs/img/back.png" width="100%" height="100%" alt="监控宝活动征文">
+        <!--<img class="act_bg" src="./rs/img/back.png" width="100%" height="100%" alt="监控宝活动征文">-->
 
 
 
@@ -176,6 +199,7 @@ $(function(){
             <!--<img src="img/invite/invite_btn.png" alt="猛戳此处">-->
         <!--</a>-->
     </div>
+<div style="clear:both"></div>
 </section>
 <!-- 监控宝产品形象 -->
 <section class="bg-blue header">
@@ -757,6 +781,63 @@ $(function(){
 
 <script src="./rs/js/index.js"></script>
 <script src="./rs/js/main.js"></script>
-
+<script type="text/javascript">
+        $(function(){
+		//大图轮播
+	    var donateRecommendPlayType=false;
+		var fadeTime = {};
+		var donateRecommendTimer = {};
+    	$(function(){
+			//初始化
+			var $pre_fade = {};
+			var $slider_num = $(".slider_num");
+			var $slider_num_li = $slider_num.children("li");
+			var curr_index = 0;
+			$(".slider_num li:first").addClass("on");
+			$(".fade_ul > li:first").css({"opacity":"1", "z-index":"2"}).addClass("onshow");
+			
+			//鼠标移动到广告下方的数字上
+			$slider_num_li.bind("mouseover", function(){
+				if($(this).hasClass("on")){return false;}
+				$pre_fade = getPreFade();
+				curr_index = $(this).index();
+				$slider_num_li.removeClass("on");
+				$(this).addClass("on");
+				showFadeInImg($pre_fade, curr_index);
+			});
+			
+			//广告自动播放
+			$("li.onshow").hover(function(){
+				clearInterval(donateRecommendTimer);
+			}, function(){
+				donateRecommendTimer = setInterval(function(){
+					$pre_fade = getPreFade();
+					curr_index = $pre_fade.index();;
+					$slider_num_li.eq(curr_index).removeClass("on");
+					if(curr_index == 3)
+					{
+						curr_index = 0;
+					}
+					else
+					{
+						curr_index++;
+					}					
+					$slider_num_li.eq(curr_index).addClass("on");
+					showFadeInImg($pre_fade, curr_index);
+				}, 4000);			
+			}).trigger("mouseleave");
+			
+			//大图淡入淡出函数
+			function showFadeInImg(pre_fade, index){
+				pre_fade.stop().animate({opacity:0, zIndex:1}, 500).removeClass("onshow");		
+				$("li.fade_img").eq(index).stop().animate({opacity:1, zIndex:2}, 500).addClass("onshow");
+			}
+			//获取当前淡入的图片
+			function getPreFade(){
+				return $("ul.fade_ul > li.onshow");
+			}
+		});
+		});
+    </script>
 
 </body></html>
