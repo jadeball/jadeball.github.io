@@ -1414,8 +1414,4 @@ footer .media-body {
 }
 
 
-@media (max-width: 768px) {
-    footer {
-        padding: 22px;
-    }
-}
+
