@@ -1406,12 +1406,13 @@ footer .media-body {
 }
 @media (max-width: 991px) {
     footer .media {
-        /*margin-left: 0px;*/
+        margin-left: 0px;
     }
     footer .media:first-child {
         padding-top: 20px;
     }
 }
+
 
 
 
